@@ -1,0 +1,23 @@
+pool:
+  name: CA-EMEA
+
+trigger: none
+
+stages:
+  - stage: Write_Info_Message
+    jobs:
+      - job: WriteInfoMessageJob
+        displayName: "Write Info Message"
+        workspace:
+          clean: all
+        steps:
+          - task: PowerShell@2
+            displayName: "Write Info Message"
+            inputs:
+              targetType: "inline"
+              script: |
+                Write-Host "test-pipeline has been triggered"
+              pwsh: true
+              failOnStderr: true
+              ignoreLASTEXITCODE: true
+              timeoutInMinutes: 2
